@@ -2,16 +2,19 @@ $(document).ready( function() {
 	$('#cat1 #name').text("Lil' Benny");
 	$('#cat2 #name').text("Killa' Kyle");
 
-	var $count1 = 0;
-	var $count2 = 0;
+	var list = ['#cat1', '#cat2'];
 
-	$('#cat1').click( function() {
-			$count1 ++;
-			$('#count1').text($count1);
-	});
+	for (var num = 0; num < list.length; num++) {
+		var cat = list[num];
+		var count = 0
 
-	$('#cat2').click( function() {
-			$count2 ++;
-			$('#count2').text($count2);
-	});
+		$(cat).click( function(cat, count, num) {
+			return function() {
+				count ++;
+				$(cat + ' #count' + (num + 1)).text(count);
+				console.log(cat)
+			};
+		}(cat, count, num));
+
+	};
 });
