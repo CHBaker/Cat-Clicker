@@ -7,7 +7,18 @@ body {
 	padding-top: 35px;
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+}
+
+.catalog {
+	order: -1;
+	background-color: white;
+	width: 300px;
+	height: 800px;
+	float: left;
+}
+
+.profile {
+
 }
 
 img {
@@ -25,17 +36,7 @@ img {
 
 }
 
-.vs {
-	font-size: 50px;
-	color: red;
-	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-	text-decoration: underline;
-	padding-top: 180px;
-	padding-left: 50px;
-	padding-right: 50px;
-}
-
-#count1, #count2 {
+#count {
 	text-align: center;
 	font-size: 35px;
 	color: white;
