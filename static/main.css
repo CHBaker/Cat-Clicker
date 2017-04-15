@@ -11,10 +11,13 @@ body {
 
 .catalog {
 	order: -1;
+	margin-left: 155px;
+	margin-right: 115px;
 	background-color: white;
 	width: 300px;
-	height: 800px;
+	height: 460px;
 	float: left;
+	border: 3px solid red;
 }
 
 .profile {
@@ -45,4 +48,5 @@ img {
 
 #name {
 	color: white;
+	text-align: center;
 }

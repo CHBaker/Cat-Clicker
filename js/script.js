@@ -17,41 +17,32 @@ $(document).ready( function() {
 
 	var list = [cat1, cat2, cat3, cat4, cat5];
 
-	// function handler(name, img, score) {
-	// 			$('#name').text(name);
-	// 			$('#img').attr('src', img);
-	// 			$('#count').text(score);
-	// }
+	function scoreHandler (cat) {
+		score ++;
+		console.log(cat);
+		cat.score = score;	
+	};
+
+	function profileHandler (name, img, score, cat) {
+				return function () {
+					if ($('img[id^="pic"')) {
+						$('img[id^="pic"').remove();
+					};
+					$('#name').text(name);
+					$('#name').after('<img id="pic' + [num] + '" src="' + img + '">');
+					$('img[id=pic' + [num] + ']').click(scoreHandler (cat));
+					$('#count').text("SCORE - " + score);
+				};
+	}(name, img, score, num);
 
 	// add a click function to display cat from catalog list
 	for (var num = 0; num < list.length; num++) {
 		var name = list[num].name;
 		var img = list[num].img;
 		var score = list[num].score;
-		$('#catalog').append("<li>" + name + "</li>").click(
-			function (name, img, score) {
-				return function () {
-					$('#name').text(name);
-					$('#img').attr('src', img);
-					$('#count').text(score);;
-				};
-		}(name, img, score));
+		$('#catalog').append('<li id="' + [num] + '">' + "<button>" + name + "</button>" + "</li>");
+		$('#' + [num]).click(profileHandler (name, img, score, list[num]));
 	};
-
-
-	// for (var num = 0; num < list.length; num++) {
-	// 	var cat = list[num];
-	// 	var count = 0;
-
-	// 	$(cat).click( function(cat, count, num) {
-	// 		return function() {
-	// 			count ++;
-	// 			$(cat + ' #count' + (num + 1)).text(count);
-	// 			console.log(cat);
-	// 		};
-	// 	}(cat, count, num));
-
-	// };
 });
 
 
