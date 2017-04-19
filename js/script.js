@@ -19,42 +19,40 @@ $(document).ready( function() {
 	var list = [cat1, cat2, cat3, cat4, cat5, cat6];
 
 	function profileHandler (name, img, score, num) {
-				return function () {
-					if ($('img[id^="pic"')) {
-						$('img[id^="pic"').remove();
+					return function () {
+						if ($('img[id^="pic"')) {
+							$('img[id^="pic"').remove();
+						};
+						$('#name').text(name);
+						$('#name').after('<img id="pic' + num + '" src="' + img + '">');
+						$('#count').text("SCORE - " + score);
 					};
-					$('#name').text(name);
-					$('img').attr(('id', 'pic' + num), ('src', img));
-					$('#count').text("SCORE - " + score);
-				};
-	}(name, img, score, [num]);
+		}(name, img, score, [num]);
 
-	function scoreHandler () {
-		//strip id for the cat list index number
-		var catId = $('img[id^="pic"').attr('id');
-		catId = catId[catId.length - 1];
-		console.log(catId);
-		var cat = list[catId];
-		cat.score++;
+		function scoreHandler () {
+			//strip id for the cat list index number
+			var catId = $('img[id^="pic"').attr('id');
+			catId = catId[catId.length - 1];
+			console.log(catId);
+			var cat = list[catId];
+			cat.score++;
 
-	};
+		};
 
-	// add a click function to display cat from catalog list
-	for (var num = 0; num < list.length; num++) {
-		var name = list[num].name;
-		var img = list[num].img;
-		var score = list[num].score;
-		$('#catalog').append(
-			'<li id="' + [num] + '">' + "<button>" + 
-			name + "</button>" + "</li>");
-		$('#' + [num]).click(
-			profileHandler (name, img, score, [num]));
-	};
+		// add a click function to display cat from catalog list
+		for (var num = 0; num < list.length; num++) {
+			var name = list[num].name;
+			var img = list[num].img;
+			var score = list[num].score;
+			$('#catalog').append(
+				'<li id="' + [num] + '">' + "<button>" + 
+				name + "</button>" + "</li>");
+			$('#' + [num]).click(
+				profileHandler (name, img, score, [num]));
+		};
 
-	$('img').on('click', 'img', scoreHandler());
+		$('.profile').on('click', 'img', scoreHandler());
 
 });
-
-
 
 
