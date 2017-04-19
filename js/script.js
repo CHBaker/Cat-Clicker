@@ -14,35 +14,47 @@ $(document).ready( function() {
 	cat3 = new Cat('#cat3', "Kalifa", 0, "http://orig06.deviantart.net/c29b/f/2011/063/4/0/cute_baby_hunter_by_woxys-d3awuft.jpg");
 	cat4 = new Cat('#cat4', "Bobby B.", 0, "https://s-media-cache-ak0.pinimg.com/736x/fb/e5/05/fbe5050b6a52a05ffbe9cb7ffb012bae.jpg");
 	cat5 = new Cat('#cat5', "Multigrain", 0, "http://www.cutestpaw.com/wp-content/uploads/2012/08/Snoopy-049.jpg");
-	cat6 = new Cat('#cat6', "Marbles", 0, "images/marbles.jpg");
+	cat6 = new Cat('#cat6', "Marbles", 0, "images/marbles.jpg")
 
 	var list = [cat1, cat2, cat3, cat4, cat5, cat6];
 
-	function scoreHandler (cat) {
-		console.log(cat);
-		cat.score++;	
-	};
-
-	function profileHandler (name, img, score, cat) {
+	function profileHandler (name, img, score, num) {
 				return function () {
 					if ($('img[id^="pic"')) {
 						$('img[id^="pic"').remove();
 					};
 					$('#name').text(name);
-					$('#name').after('<img id="pic' + [num] + '" src="' + img + '">');
-					$('img[id=pic' + [num] + ']').click(scoreHandler (cat));
+					$('img').attr(('id', 'pic' + num), ('src', img));
 					$('#count').text("SCORE - " + score);
 				};
-	}(name, img, score, num);
+	}(name, img, score, [num]);
+
+	function scoreHandler () {
+		//strip id for the cat list index number
+		var catId = $('img[id^="pic"').attr('id');
+		catId = catId[catId.length - 1];
+		console.log(catId);
+		var cat = list[catId];
+		cat.score++;
+
+	};
 
 	// add a click function to display cat from catalog list
 	for (var num = 0; num < list.length; num++) {
 		var name = list[num].name;
 		var img = list[num].img;
 		var score = list[num].score;
-		$('#catalog').append('<li id="' + [num] + '">' + "<button>" + name + "</button>" + "</li>");
-		$('#' + [num]).click(profileHandler (name, img, score, list[num]));
+		$('#catalog').append(
+			'<li id="' + [num] + '">' + "<button>" + 
+			name + "</button>" + "</li>");
+		$('#' + [num]).click(
+			profileHandler (name, img, score, [num]));
 	};
+
+	$('img').on('click', 'img', scoreHandler());
+
 });
+
+
 
 
