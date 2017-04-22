@@ -23,17 +23,15 @@ $(document).ready( function() {
 	function profileHandler (name, img, score, num) {
 				return function () {
 					currentCat = list[num];
-					if ($('img[id^="pic"')) {
-						$('img[id^="pic"').remove();
-					};
 					$('#name').text(name);
-					$('#name').after('<img id="pic' + num + '" src="' + img + '">');
+					$('img').attr('src', img);
 					$('#count').text("SCORE - " + score);
 				};
 	}(name, img, score, [num]);
 
 	function scoreHandler (cat) {
 		cat.score++;
+		console.log(cat.score);
 	};
 
 	// add a click function to display cat from catalog list
@@ -48,7 +46,9 @@ $(document).ready( function() {
 			profileHandler (name, img, score, [num]));
 	};
 
-	$('img').click(scoreHandler(currentCat));
+	$('img').click(function() {
+		scoreHandler(currentCat);
+	});
 
 });
 
