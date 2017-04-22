@@ -18,18 +18,23 @@ $(document).ready( function() {
 
 	var list = [cat1, cat2, cat3, cat4, cat5, cat6];
 
+	var currentCat = null
+
 	function profileHandler (name, img, score, num) {
-		return function () {
-			currentCat = list[num];
-			if ($('img[id^="pic"]')) {
-				$('img[id^="pic"]').remove();
-			};
-			$('#name').text(name);
-			$('#name').after('<img id="pic' + num + '" src="' + img + '">');
-			$('#count').text("SCORE - " + score);
-			return currentCat;
-		};
+				return function () {
+					currentCat = list[num];
+					if ($('img[id^="pic"')) {
+						$('img[id^="pic"').remove();
+					};
+					$('#name').text(name);
+					$('#name').after('<img id="pic' + num + '" src="' + img + '">');
+					$('#count').text("SCORE - " + score);
+				};
 	}(name, img, score, [num]);
+
+	function scoreHandler (cat) {
+		cat.score++;
+	};
 
 	// add a click function to display cat from catalog list
 	for (var num = 0; num < list.length; num++) {
@@ -41,14 +46,9 @@ $(document).ready( function() {
 			name + "</button>" + "</li>");
 		$('#' + [num]).click(
 			profileHandler (name, img, score, [num]));
-		return currentCat;
 	};
 
-	function score(cat) {
-		cat.score++;
-	};
+	$('img').click(scoreHandler(currentCat));
 
-	('img[id^="pic"]').click(score(currentCat));
 });
-
 
