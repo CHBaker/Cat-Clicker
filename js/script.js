@@ -100,17 +100,18 @@ $(function () {
 
 		init: function () {
 			// current cat set to first in list
-			currentCat = model.cats[0];
+			model.currentCat = model.cats[0];
 			catListView.init();
 			catView.init();
 		},
 
-		getCurrentCat: function (cat) {
-			return model.currentCat = cat;
+		getCurrentCat: function () {
+			return model.currentCat;
 		},
 
-		setCurrentCat: function () {
-			return 
+		// set selected cat to object
+		setCurrentCat: function (cat) {
+			model.currentCat = cat;
 		},
 
 		getCats: function () {
@@ -119,7 +120,7 @@ $(function () {
 
 		increment: function () {
 			model.currentCat.count++;
-			catView.render
+			catView.render();
 		}
 	};
 
@@ -158,17 +159,24 @@ $(function () {
 			this.catListElem = $('#catalog');
 
 			this.render();
+			console.log('rendering... ... ...');
 		},
 
 		render: function () {
+			var cat, elem, i;
 			var cats = octopus.getCats;
 			this.catListElem.innerHTML = '';
 
-			for (var i = 0; i < cats.length; i++) {
+			console.log('html cleared');
+
+			for (i = 0; i < cats.length; i++) {
 				var cat = cat[i];
+				console.log('for loop starting');
 
 				// make a new cat list set
 				var elem = ('<li>' + cat.name + '</li>');
+
+				console.log('creating elem');
 
 				// on click set current cat to match the list name selected
 				elem.click(function (cat) {
@@ -178,8 +186,12 @@ $(function () {
 					};
 				}(cat));
 
+				console.log('elem click bind');
+
 				// append cats to list with click event
-				$('#catalog').append(elem)
+				$('#catalog').append(elem);
+
+				console.log('elem appended');
 			};
 		}
 
