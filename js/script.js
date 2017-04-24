@@ -164,27 +164,22 @@ $(function () {
 
 		render: function () {
 			var cat, elem, i;
-			var cats = octopus.getCats;
+			var cats = octopus.getCats();
 			this.catListElem.innerHTML = '';
 
 			console.log('html cleared');
 
 			for (i = 0; i < cats.length; i++) {
-				var cat = cat[i];
+				var cat = cats[i];
 				console.log('for loop starting');
 
 				// make a new cat list set
-				var elem = ('<li>' + cat.name + '</li>');
+				var elem = ('<li>' + '<button id="' + i + '">' + 
+							cat.name + '</button>' + '</li>');
 
 				console.log('creating elem');
 
 				// on click set current cat to match the list name selected
-				elem.click(function (cat) {
-					return function () {
-						octopus.setCurrentCat(cat);
-						catView.render();
-					};
-				}(cat));
 
 				console.log('elem click bind');
 
@@ -192,6 +187,13 @@ $(function () {
 				$('#catalog').append(elem);
 
 				console.log('elem appended');
+
+				$('#' + i).click(function (cat) {
+					return function () {
+						octopus.setCurrentCat(cat);
+						catView.render();
+					};
+				}(cat));
 			};
 		}
 
