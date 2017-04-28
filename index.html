@@ -29,11 +29,13 @@
 
             <div class="profile">
 
-                    <div id="name"></div>
+                    <div data-bind="text: name" id="name"></div>
 
-                    <img id="img">
+                    <div data-bind="text: level" id="name"></div>
 
-                    <div id="count"></div>
+                    <img data-bind="click: increment, attr: {src: imgSrc}" id="img">
+
+                    <div data-bind="text: clickCount" id="count"></div>
 
             </div>
 
