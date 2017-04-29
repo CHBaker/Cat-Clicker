@@ -11,6 +11,13 @@ var ViewModel = function () {
 		{ level: 'Inferno of Death and Laziness', click: 60}
 	];
 
+	// list of each cat's nicknames
+	this.nickNames = ko.observableArray([
+		{ cat: 'Marbles', nick: ['Marbs', 'Mr. Marbles', 'Ass Hat'] }
+	]);
+
+	console.log(this.nickNames());
+
 	// change level based on clicks
 	this.level = ko.computed(function () {
 		for (var i = 0; i < this.levels.length; i++) {
