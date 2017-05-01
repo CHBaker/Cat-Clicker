@@ -1,7 +1,7 @@
-var Cat = function () {
-	this.clickCount = ko.observable(0);
-	this.name = ko.observable('Marbles');
-	this.imgSrc = ko.observable('images/marbles.jpg');
+var Cat = function (data) {
+	this.clickCount = ko.observable(data.clickCount);
+	this.name = ko.observable(data.name);
+	this.imgSrc = ko.observable(data.imgSrc);
 
 	// list of what level the cat is, and how many clicks to achieve
 	this.levels = [
@@ -12,11 +12,7 @@ var Cat = function () {
 	];
 
 	// list of each cat's nicknames
-	this.nickNames = ko.observableArray([
-		{ nick: 'Marbs'}, 
-		{ nick: 'Mr. Marbles'},
-		{ nick: 'Ass Hat'}
-	]);
+	this.nickNames = ko.observableArray(data.nickNames);
 
 	// change level based on clicks
 	this.level = ko.computed(function () {
@@ -33,7 +29,14 @@ var ViewModel = function () {
 
 	// could use self = this to access viewmodel instead of binding context
 
-	this.currentCat = ko.observable( new Cat() );
+	this.currentCat = ko.observable( new Cat({
+		clickCount: 0, 
+		name: 'Marbles',
+		imgSrc: 'images/marbles.jpg',
+		nickNames: ['Marbs',
+				   'Mr. Marbles',
+				   'Lay-Z Boi']
+	}) );
 
 	this.increment = function () {
 		// self.currentCat().clickCount(...) 
