@@ -1,4 +1,4 @@
-var ViewModel = function () {
+var Cat = function () {
 	this.clickCount = ko.observable(0);
 	this.name = ko.observable('Marbles');
 	this.imgSrc = ko.observable('images/marbles.jpg');
@@ -13,10 +13,12 @@ var ViewModel = function () {
 
 	// list of each cat's nicknames
 	this.nickNames = ko.observableArray([
-		{ cat: 'Marbles', nick: ['Marbs', 'Mr. Marbles', 'Ass Hat'] }
+		{ nick: 'Marbs'}, 
+		{ nick: 'Mr. Marbles'},
+		{ nick: 'Ass Hat'}
 	]);
 
-	console.log(this.nickNames());
+	console.log(this.nickNames().nick);
 
 	// change level based on clicks
 	this.level = ko.computed(function () {
@@ -27,11 +29,16 @@ var ViewModel = function () {
 			}
 		}
 	}, this);
+};
+
+var ViewModel = function () {
+
+	this.currentCat = ko.observable( new Cat() );
 
 	this.increment = function () {
-		this.clickCount(this.clickCount() + 1);
-	}
+		this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+	};
 
-}
+};
 
 ko.applyBindings(new ViewModel());

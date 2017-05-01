@@ -29,13 +29,13 @@
 
             <div class="profile">
 
-                    <div data-bind="text: name" id="name"></div>
+                    <div data-bind="text: currentCat().name" id="name"></div>
 
-                    <div data-bind="text: level" id="name"></div>
+                    <div data-bind="text: currentCat().level" id="name"></div>
 
-                    <img data-bind="click: increment, attr: {src: imgSrc}" id="img">
+                    <img data-bind="click: increment, attr: {src: currentCat().imgSrc}" id="img">
 
-                    <div data-bind="text: clickCount" id="count"></div>
+                    <div data-bind="text: currentCat().clickCount" id="count"></div>
 
             </div>
 
@@ -53,7 +53,7 @@
 
                     </thead>
                     
-                        <tbody data-bind="foreach: nickNames">
+                        <tbody data-bind="foreach: currentCat().nickNames">
 
                             <tr>
 
