@@ -18,8 +18,6 @@ var Cat = function () {
 		{ nick: 'Ass Hat'}
 	]);
 
-	console.log(this.nickNames().nick);
-
 	// change level based on clicks
 	this.level = ko.computed(function () {
 		for (var i = 0; i < this.levels.length; i++) {
@@ -33,10 +31,14 @@ var Cat = function () {
 
 var ViewModel = function () {
 
+	// could use self = this to access viewmodel instead of binding context
+
 	this.currentCat = ko.observable( new Cat() );
 
 	this.increment = function () {
-		this.currentCat().clickCount(this.currentCat().clickCount() + 1);
+		// self.currentCat().clickCount(...) 
+		// accesses viewmodel instead of binding context
+		this.clickCount(this.clickCount() + 1);
 	};
 
 };
