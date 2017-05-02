@@ -77,6 +77,11 @@ var ViewModel = function () {
 
 	this.currentCat = ko.observable( this.catList()[0] );
 
+	// $data passed in as cat (cat object)
+	this.changeCurrentCat = function (clickedCat) {
+		self.currentCat(clickedCat);
+	}
+
 	// could use self = this to access viewmodel instead of binding context
 	this.increment = function () {
 		// self.currentCat().clickCount(...) 

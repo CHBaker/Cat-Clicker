@@ -21,8 +21,17 @@
 
             <div class="catalog"> 
                 <!-- get it?? -->
-                <ul id="catalog">
+                <div class="catalogTitle">
+
+                    Competing Cats
+                    
+                </div>
+
+                <ul data-bind="foreach: catList" id="catalog">
+
                     <!-- CATalog goes here -->
+                    <button data-bind="text: name, click: $parent.changeCurrentCat" class="catListName"></button><br>
+
                 </ul>
 
             </div>
@@ -41,7 +50,7 @@
 
             <div data-bind="with: currentCat" class="info">
 
-                <table>
+                <table class="table">
 
                     <thead>
 
